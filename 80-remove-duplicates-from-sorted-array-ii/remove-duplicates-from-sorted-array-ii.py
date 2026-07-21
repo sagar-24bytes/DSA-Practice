@@ -4,22 +4,21 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        freq={}
-        for n in nums:
-            freq[n]=freq.get(n,0)+1
+        ins=0
+        i=0
+        while i<len(nums):
+            x=1
 
-        k=0
-        for a,b in sorted(freq.items()):
-            if b>=2:
-                nums[k]=a
-                nums[k+1]=a
-                k+=2
+            while i+1<len(nums) and nums[i]==nums[i+1]:
+                i+=1
+                x+=1
+            if x>=2:
+                nums[ins]=nums[i]
+                ins+=1
+                nums[ins]=nums[i]
+                # ins+=1
             else:
-                nums[k]=a
-                k+=1
-
-        return k
-            
-                
-
-        
+                nums[ins]=nums[i]
+            ins+=1
+            i+=1
+        return ins

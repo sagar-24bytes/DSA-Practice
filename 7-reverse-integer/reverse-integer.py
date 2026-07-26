@@ -4,13 +4,20 @@ class Solution(object):
         :type x: int
         :rtype: int
         """
-        n=int(str(abs(x))[::-1])
+        rev=0
         if x<0:
-            neg=-1
+            pre=-1
         else:
-            neg=1
-        n=neg*n
-        if n<(-2**31) or n>(2**31)-1:
+            pre=1
+        x=abs(x)
+        while x>0:
+            digit=x%10
+            rev=rev*10+digit
+            x//=10
+        ans=pre*rev
+        if ans<(-2**31) or ans>(2**31-1):
             return 0
-        return n
+        return ans
+            
+
         

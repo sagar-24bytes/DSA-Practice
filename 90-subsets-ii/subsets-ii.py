@@ -2,15 +2,15 @@ class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         ans=set()
-        res=[]
+        path=[]
         def func(i):
             if i==len(nums):
-                ans.add(tuple(res))
+                ans.add(tuple(path))
                 return
-            res.append(nums[i])
+            path.append(nums[i])
             func(i+1)
-            res.pop()
+            path.pop()
             func(i+1)
         func(0)
-        return [list(x) for x in ans] 
+        return [list(x) for x in ans]
         

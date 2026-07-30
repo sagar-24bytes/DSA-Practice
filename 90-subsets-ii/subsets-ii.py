@@ -3,14 +3,17 @@ class Solution:
         nums.sort()
         ans=set()
         path=[]
-        def func(i):
-            if i==len(nums):
-                ans.add(tuple(path))
+
+        def dfs(idx):
+            if idx==len(nums):
+                ans.add(tuple(path[:]))
                 return
-            path.append(nums[i])
-            func(i+1)
+            path.append(nums[idx])
+            dfs(idx+1)
             path.pop()
-            func(i+1)
-        func(0)
-        return [list(x) for x in ans]
+            dfs(idx+1)
+        dfs(0)
+        return [list(v) for v in ans]
+        
+            
         

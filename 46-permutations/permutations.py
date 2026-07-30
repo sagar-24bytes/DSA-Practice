@@ -3,6 +3,7 @@ class Solution:
         ans=[]
         path=[]
         visited=[False]*(len(nums))
+
         def dfs():
             if len(path)==len(nums):
                 ans.append(list(path))

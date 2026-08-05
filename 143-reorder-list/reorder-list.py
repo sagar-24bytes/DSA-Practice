@@ -33,7 +33,7 @@ class Solution:
             right.next=l
             left=l
             right=r
-        return head
+    
         
 
 

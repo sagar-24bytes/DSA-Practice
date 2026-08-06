@@ -8,14 +8,12 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        # Finding middle element
-        slow=fast=head
+        fast=slow=head
         while fast and fast.next:
             fast=fast.next.next
             slow=slow.next
         curr=slow.next
         slow.next=None
-        # reversing second half
         prev=None
         while curr:
             nxxt=curr.next
@@ -23,9 +21,9 @@ class Solution:
             prev=curr
             curr=nxxt
         
-        # putting both halfs alternatively
         left=head
         right=prev
+
         while right:
             l=left.next
             r=right.next
@@ -33,8 +31,4 @@ class Solution:
             right.next=l
             left=l
             right=r
-    
-        
-
-
         

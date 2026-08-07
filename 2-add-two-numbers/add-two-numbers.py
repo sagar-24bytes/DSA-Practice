@@ -1,40 +1,38 @@
 # Definition for singly-linked list.
-# class ListNode(object):
+# class ListNode:
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
-    def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: Optional[ListNode]
-        :type l2: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
-        temp1=l1
-        temp2=l2
-        dummy=ListNode(0)
-        curr=dummy
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         carry=0
-        while temp1 or temp2:
+        dummy=ListNode(0)
+        temp=dummy
+        while l1 or l2:
             total=carry
-            if temp1:
-                total+=temp1.val
-            if temp2:
-                total+=temp2.val
-
-            carry=total//10
-            num=total%10
-            new_node= ListNode(num)
-            curr.next=new_node
-            curr=new_node
-            if temp1:
-                temp1=temp1.next
-            if temp2:
-                temp2=temp2.next
+            if l1:
+                total+=l1.val
+            if l2:
+                total+=l2.val
+            if total>9:
+                carry=total//10
+                curr=total%10
+            else:
+                curr=total
+                carry=0
+            new_node=ListNode(curr)
+            temp.next=new_node
+            temp=temp.next
+            if l1:
+                l1=l1.next
+            if l2:
+                l2=l2.next
         if carry!=0:
             new_node=ListNode(carry)
-            curr.next=new_node
-            curr=new_node
+            temp.next=new_node
+
+
+
         return dummy.next
 
         

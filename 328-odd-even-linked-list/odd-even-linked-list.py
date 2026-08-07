@@ -16,5 +16,4 @@ class Solution:
             even=even.next
         odd.next=temp
         return head
-    
         

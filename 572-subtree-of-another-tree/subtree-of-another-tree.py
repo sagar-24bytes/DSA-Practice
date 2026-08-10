@@ -15,7 +15,7 @@ class Solution:
                 return False
             return sameTree(a.left,b.left) and sameTree(a.right,b.right)
         def func(p,q):
-            if not p or not q:
+            if not p:
                 return False
             if p.val==q.val:
                 if sameTree(p,q):

@@ -8,5 +8,4 @@ class Solution:
                 count+=seen[prefix_sum-k]
             seen[prefix_sum]=seen.get(prefix_sum,0)+1
         return count
-
         

@@ -1,13 +1,11 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        ans=[]
         res={}
         for s in strs:
-            t="".join(sorted(s))
-            res.setdefault(t,[]).append(s)
-        return list(res.values())
-
+            x="".join(sorted(s))
+            res.setdefault(x,[]).append(s)
+        for y in res.values():
+            ans.append(y)
+        return ans
         

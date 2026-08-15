@@ -1,19 +1,13 @@
-class Solution(object):
-    def longestCommonSubsequence(self, text1, text2):
-        """
-        :type text1: str
-        :type text2: str
-        :rtype: int
-        """
-        r=len(text1)
-        c=len(text2)
-        dp=[[0]*(c+1) for _ in range(r+1)]
-        for i in range(1,r+1):
-            for j in range(1,c+1):
-                if text1[i-1]==text2[j-1]:
-                    dp[i][j]=1+dp[i-1][j-1]
-                else:
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1])
-        return dp[r][c]
-
+from functools import lru_cache
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        @lru_cache(None)
+        def func(i,j):
+            if i<0 or j<0:
+                return 0
+            if text1[i]==text2[j]:
+                return 1+func(i-1,j-1)
+            
+            return max(func(i,j-1),func(i-1,j))
+        return func(len(text1)-1,len(text2)-1)
         

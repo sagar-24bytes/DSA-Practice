@@ -1,7 +1,7 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         def merge_sort(nums):
-            if len(nums)>1:
+            if len(nums)>1: # remember the base case (if len<=1 then already sorted)
                 l_arr=nums[:len(nums)//2]
                 r_arr=nums[len(nums)//2:]
                 merge_sort(l_arr)

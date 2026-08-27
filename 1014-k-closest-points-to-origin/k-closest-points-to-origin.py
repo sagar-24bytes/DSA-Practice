@@ -10,4 +10,8 @@ class Solution:
         ans=[]
         for d,x,y in heap:
             ans.append([x,y])
-        return ans        
+        return ans 
+
+
+
+        

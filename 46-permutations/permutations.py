@@ -7,6 +7,7 @@ class Solution:
         def dfs():
             if len(path)==len(nums):
                 ans.append(list(path))
+                print(path)
                 return
             for i in range(len(nums)):
                 if visited[i]:
@@ -16,6 +17,7 @@ class Solution:
                 dfs()
                 path.pop()
                 visited[i]=False
+            print(path)
         dfs()
         return ans 
         

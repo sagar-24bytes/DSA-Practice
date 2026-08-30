@@ -1,6 +1,5 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        
         def func(left,right):
             while left>=0 and right<len(s) and s[left]==s[right]:
                 left-=1
@@ -14,4 +13,5 @@ class Solution:
                 ans=even
             if len(odd)>len(ans):
                 ans=odd
-        return ans
+        return ans 
+        

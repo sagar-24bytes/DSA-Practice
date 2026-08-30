@@ -1,9 +1,5 @@
-class Solution(object):
-    def reverse(self, x):
-        """
-        :type x: int
-        :rtype: int
-        """
+class Solution:
+    def reverse(self, x: int) -> int:
         rev=0
         if x<0:
             pre=-1
@@ -18,6 +14,4 @@ class Solution(object):
         if ans<(-2**31) or ans>(2**31-1):
             return 0
         return ans
-            
-
         

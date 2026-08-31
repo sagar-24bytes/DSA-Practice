@@ -6,9 +6,12 @@ class Solution:
             if idx==n:
                 ans.append(path[:])
                 return
-            path.append(nums[idx])
+            # TAKE 
+            path.append(nums[idx])   
             dfs(idx+1,path)
-            path.pop()
-            dfs(idx+1,path)
+
+            path.pop()    #undo
+            
+            dfs(idx+1,path)    # DONT TAKE
         dfs(0,[])
         return ans 

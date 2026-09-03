@@ -6,5 +6,4 @@ class Solution:
                 return False
             reach=max(reach,i+nums[i])
         return True
-
         

@@ -13,16 +13,13 @@ class Solution:
             nums.reverse()
             return
         for i in range(n-1,idx-1,-1):
-            if nums[i]>nums[idx]:
+            if nums[idx]<nums[i]:
                 nums[i],nums[idx]=nums[idx],nums[i]
                 break
         left=idx+1
         right=n-1
         while left<=right:
-            nums[left],nums[right]=nums[right],nums[left]
+            nums[right],nums[left]=nums[left],nums[right]
             left+=1
             right-=1
-        
-        
-
         

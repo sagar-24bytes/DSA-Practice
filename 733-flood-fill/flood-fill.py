@@ -4,8 +4,8 @@ class Solution:
         cols=len(image[0])
         original=image[sr][sc]
         visited=[[False]*cols for i in range(rows)]
-        # if original==color:
-        #     return image
+        if original==color:
+            return image
         d=[(1,0),(-1,0),(0,1),(0,-1)]
         def dfs(r,c):
             image[r][c]=color

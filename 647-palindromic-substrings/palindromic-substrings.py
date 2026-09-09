@@ -1,12 +1,15 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        count=0
         n=len(s)
+        count=0
+        def expand(left,right):
+            nonlocal count
+            while left>=0 and right<n and s[left]==s[right]:
+                count+=1
+                left-=1
+                right+=1
         for i in range(n):
-            for j in range(i,n):
-                sub=s[i:j+1]
-                if sub==sub[::-1]:
-                    count+=1
+            expand(i,i)   # for odd centred palindrome
+            expand(i,i+1)  # for even centred palindrome 
         return count
-
         

@@ -1,32 +1,37 @@
-from collections import deque
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
         """
-        q=deque()
+    
         rows=len(board)
         cols=len(board[0])
         visited=[[False]*cols for _ in range(rows)]
+
+        def dfs(r,c):
+            if r<0 or r>=rows or c<0 or c>=cols or visited[r][c]:
+                return
+            # if r==0 or r==rows-1 or c==0 or c==cols-1:
+            visited[r][c]=True
+            if board[r][c]=='O':
+                # visited[r][c]=True
+                dfs(r-1,c)
+                dfs(r+1,c)
+                dfs(r,c-1)
+                dfs(r,c+1)
         for r in range(rows):
             for c in range(cols):
-                if r==0 or r==rows-1 or c==0 or c==cols-1:
-                    if board[r][c]=='O':
-                        q.append((r,c))
-                        visited[r][c]=True
-        d=[(-1,0),(1,0),(0,1),(0,-1)]
-        while q:
-            r,c=q.popleft()
-            for x,y in d:
-                nr=r+x
-                nc=c+y
-                if 0<=nr<rows and 0<=nc<cols and board[nr][nc]=='O' and not visited[nr][nc]:
-                    visited[nr][nc]=True
-                    q.append((nr,nc))
+                if (r==0 or r==rows-1 or c==0 or c==cols-1) and board[r][c]=='O' and not visited[r][c]:
+                    # visited[r][c]=True
+                    dfs(r,c)
         for r in range(rows):
             for c in range(cols):
                 if board[r][c]=='O' and not visited[r][c]:
                     board[r][c]='X'
+
+        
+            
+    
         
         
 

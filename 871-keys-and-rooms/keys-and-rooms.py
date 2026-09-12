@@ -1,18 +1,24 @@
+from collections import deque
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         n=len(rooms)
         visited=[False]*n
         count=0
-        def dfs(node):
-            nonlocal count
-            if visited[node]:
-                return
+        q=deque()
+        q.append(0)
+        visited[0]=True
+        while q:
+            x=q.popleft()
+            # visited[x]=True
             count+=1
-            visited[node]=True
-            for nei in rooms[node]:
+            for nei in rooms[x]:
                 if not visited[nei]:
-                    dfs(nei)
-        dfs(0)
+                    # count+=1
+                    visited[nei]=True
+                    q.append(nei)
+        print(count)
         return count==n
+
+        
 
         

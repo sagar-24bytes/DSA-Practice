@@ -6,7 +6,7 @@ class Solution:
         visited=[False]*numCourses
         path=[False]*numCourses
 
-        def dfs(node):
+        def dfs(node):   # if cycle exists in directed graph -> ans=False , warna ans= True here
             visited[node]=True
             path[node]=True
             for nei in graph[node]:

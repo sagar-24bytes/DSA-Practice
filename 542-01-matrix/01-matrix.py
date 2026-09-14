@@ -3,7 +3,6 @@ class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
         rows=len(mat)
         cols=len(mat[0])
-        visited=[[False]*cols for _ in range(rows)]
         ans=[[-1]*cols for _ in range(rows)]
         q=deque()
         d=[(-1,0),(1,0),(0,-1),(0,1)]

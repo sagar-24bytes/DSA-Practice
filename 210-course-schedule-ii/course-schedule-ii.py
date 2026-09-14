@@ -1,30 +1,26 @@
+from collections import deque
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        graph=[[] for _ in range(numCourses)]
-        visited=[False]*numCourses
-        path=[False]*numCourses
-        ans=[]
+        graph=[[]for _ in range(numCourses)]
+        indegree=[0]*numCourses
         for a,b in prerequisites:
             graph[b].append(a)
-        ANS=[]
-
-        def dfs(node):
-            visited[node]=True
-            path[node]=True
-            for nei in graph[node]:
-                if path[nei]:
-                    return False
-                elif not visited[nei]:
-                    if not dfs(nei):
-                        return False
-            path[node]=False
-            ans.append(node)
-            return True
-        
+            indegree[a]+=1
+        q=deque()
         for i in range(numCourses):
-            if not visited[i]:
-                if not dfs(i):
-                    return []
-        return ans[::-1]
+            if indegree[i]==0:
+                q.append(i)
+        ans=[]
+        while q:
+            node=q.popleft()
+            ans.append(node)
+            for nei in graph[node]:
+                indegree[nei]-=1
+                if indegree[nei]==0:
+                    q.append(nei)
 
+        if len(ans)!=numCourses:
+            return []
+        return ans
+        
         

@@ -20,7 +20,6 @@ class Solution:
                 if 0<=nr<rows and 0<=nc<cols:
                     if ans[nr][nc]==-1:
                         q.append((nr,nc))
-                    # if mat[nr][nc]!=0:
                         ans[nr][nc]=ans[r][c]+1
                         
         return ans 

@@ -5,22 +5,22 @@ class Solution:
         visited=[[False]*cols for _ in range(rows)]
 
         def dfs(r,c):
-            if 0>r or r>=rows or c<0 or c>=cols:
-                return
+            if r<0 or r>=rows or c<0 or c>=cols:
+                return 
             if grid[r][c]=='0' or visited[r][c]:
-                return
+                return 
             visited[r][c]=True
             dfs(r-1,c)
             dfs(r+1,c)
             dfs(r,c-1)
             dfs(r,c+1)
-        islands=0
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c]=='1' and not visited[r][c]:
-                    islands+=1
-                    dfs(r,c)
-        return islands
-
+        ans=0
+        
+        for  i in range(rows):
+            for j in range(cols):
+                if grid[i][j]=='1' and not visited[i][j]:
+                    ans+=1
+                    dfs(i,j)
+        return ans
 
         

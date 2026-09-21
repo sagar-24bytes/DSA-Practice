@@ -1,9 +1,11 @@
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        if not strs:
+            return []
         res={}
-
         for s in strs:
-            st="".join(sorted(s))
-            res.setdefault(st,[]).append(s)
+            x="".join(sorted(s))
+            res.setdefault(x,[]).append(s)
         return list(res.values())
+
         

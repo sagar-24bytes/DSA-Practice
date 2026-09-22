@@ -1,19 +1,12 @@
 from collections import Counter
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count=Counter(nums)
-        x=count.most_common()
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        freq=Counter(nums)
+        temp=freq.most_common()
         ans=[]
-        i=0
-        for n in range(len(x)):
-            i+=1
-            if i<=k:
-                ans.append(x[n][0])
-
+        for x,y in temp:
+            ans.append(x)
+            if len(ans)==k:
+                break
         return ans
-
-
-
-
-
         

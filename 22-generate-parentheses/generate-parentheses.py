@@ -1,20 +1,18 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        path=[]
+    def generateParenthesis(self, n: int) -> list[str]:
         ans=[]
-        def dfs(open_c,close_c):
+        path=[]
+        def dfs(open_p,close_p):
             if len(path)==2*n:
                 ans.append("".join(path[:]))
                 return
-            if open_c<n:
+            if open_p<n:
                 path.append('(')
-                dfs(open_c+1,close_c)
+                dfs(open_p+1,close_p)
                 path.pop()
-            if close_c<open_c:
+            if close_p<open_p:
                 path.append(')')
-                dfs(open_c,close_c+1)
+                dfs(open_p,close_p+1)
                 path.pop()
-            
-            # dfs(open_c,close_c)
         dfs(0,0)
-        return ans 
+        return ans

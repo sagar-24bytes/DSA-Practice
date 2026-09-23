@@ -5,16 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        def func(p,q):
-            if not p and not q:
-                return True
-            if not p or not q:
-                return False
-            if p.val!=q.val:
-                return False
-            return (func(p.right,q.right) and func(p.left,q.left))
-        return func(p,q)
-
-
+    def isSameTree(self, p: TreeNode | None, q: TreeNode | None) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        if p.val!=q.val:
+            return False
+        return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+        
         

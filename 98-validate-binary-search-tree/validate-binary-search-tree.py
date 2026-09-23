@@ -5,13 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+    def isValidBST(self, root: TreeNode | None) -> bool:
+        temp=[]
+        
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            
+            temp.append(node.val)
+            inorder(node.right)
+        inorder(root)
+        return temp==sorted(temp) and len(temp)==len(set(temp))
 
-        def func(root,low,high):
-            if not root:
-                return True
-            if root.val<=low or root.val>=high:
-                return False
-            return func(root.left,low,root.val) and func(root.right,root.val,high)
-        return func(root,float('-inf'),float('inf'))
+            
         

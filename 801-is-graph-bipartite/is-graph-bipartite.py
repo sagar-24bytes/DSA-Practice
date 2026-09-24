@@ -1,21 +1,20 @@
 class Solution:
-    def isBipartite(self, graph: List[List[int]]) -> bool:
+    def isBipartite(self, graph: list[list[int]]) -> bool:
         n=len(graph)
         color=[-1]*n
-
         def dfs(node,col):
             color[node]=col
             for nei in graph[node]:
                 if color[nei]==-1:
                     if not dfs(nei,1-col):
                         return False
-                elif col==color[nei]:
+                elif color[nei]==col:
                     return False
             return True
-        for i in range(n):
-            if color[i]==-1:
-                if not dfs(i,0):
+        for x in range(n):
+            if color[x]==-1:
+                if not dfs(x,0):
                     return False
         return True
-                    
-                    
+
+        

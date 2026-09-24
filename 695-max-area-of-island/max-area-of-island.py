@@ -8,8 +8,7 @@ class Solution:
             if grid[r][c]==0:
                 return 0
             grid[r][c]=0
-            return 1+ dfs(r-1,c)+dfs(r+1,c)+dfs(r,c-1)+dfs(r,c+1)
-
+            return 1+dfs(r-1,c)+dfs(r+1,c)+dfs(r,c-1)+dfs(r,c+1)
         ans=0
         for i in range(rows):
             for j in range(cols):
@@ -17,7 +16,3 @@ class Solution:
                     a=dfs(i,j)
                     ans=max(ans,a)
         return ans
-
-                 
-        
-        

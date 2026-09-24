@@ -12,6 +12,8 @@ class Solution:
                 elif grid[r][c]==1:
                     fresh+=1
         ans=0
+        if fresh==0:
+            return 0
         d=[(-1,0),(1,0),(0,-1),(0,1)]
         while q and fresh>0:
             n=len(q)
@@ -21,8 +23,6 @@ class Solution:
                     nr=r+x
                     nc=c+y
                     if nr<0 or nr>=rows or 0>nc or nc>=cols:
-                        continue
-                    if grid[nr][nc]==0 or grid[nr][nc]==2:
                         continue
                     if grid[nr][nc]==1:
                         fresh-=1

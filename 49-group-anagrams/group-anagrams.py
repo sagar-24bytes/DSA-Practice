@@ -1,11 +1,8 @@
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        if not strs:
-            return []
-        res={}
+        seen={}
         for s in strs:
-            x="".join(sorted(s))
-            res.setdefault(x,[]).append(s)
-        return list(res.values())
-
+            sor="".join(sorted(s))
+            seen.setdefault(sor,[]).append(s)
+        return list(seen.values())
         

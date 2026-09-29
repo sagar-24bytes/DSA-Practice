@@ -3,9 +3,16 @@ class Solution:
         freq={}
         for n in nums:
             freq[n]=freq.get(n,0)+1
-        temp=sorted(freq.items(),key=lambda x:x[1],reverse=True)
-
-        ans=[temp[i][0] for i in range(k)]
-        return ans
+        buckets=[[]for _ in range(len(nums)+1)]
+        for n,count in freq.items():
+            buckets[count].append(n)
+        ans=[]
+        for i in range(len(buckets)-1,-1,-1):
+            for x in buckets[i]:
+                ans.append(x)
+            if len(ans)==k:
+                return ans
+            
+        
 
         

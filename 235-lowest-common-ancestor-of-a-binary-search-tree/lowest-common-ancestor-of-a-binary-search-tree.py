@@ -7,7 +7,6 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-
         while root:
             if p.val<root.val and q.val<root.val:
                 root=root.left
@@ -15,6 +14,5 @@ class Solution:
                 root=root.right
             else:
                 return root
-        return root
-
+        
         

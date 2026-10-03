@@ -8,5 +8,4 @@ class Solution:
             key=tuple(count)
             seen.setdefault(key,[]).append(s)
         return list(seen.values())
-
         

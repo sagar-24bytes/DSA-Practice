@@ -2,10 +2,9 @@ class Solution:
     def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
         rows=len(matrix)
         cols=len(matrix[0])
-        left,right=0,cols-1
         top,bottom=0,rows-1
+        left,right=0,cols-1
         ans=[]
-
         while left<=right and top<=bottom:
             for i in range(left,right+1):
                 ans.append(matrix[top][i])
@@ -22,4 +21,6 @@ class Solution:
                     ans.append(matrix[j][left])
                 left+=1
         return ans
+
+
         

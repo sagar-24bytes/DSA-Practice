@@ -1,39 +1,45 @@
+from collections import deque
 class Solution:
     def pacificAtlantic(self, heights: list[list[int]]) -> list[list[int]]:
         rows=len(heights)
         cols=len(heights[0])
         pacific=set()
         atlantic=set()
-        ans=[]
-        d=[(-1,0),(1,0),(0,-1),(0,1)]
-        def dfs(r,c,temp):
-            
-            for x,y in d:
-                nr=r+x
-                nc=c+y
-                if nr<0 or nr>=rows or nc<0 or nc>=cols:
-                    continue
-                if heights[nr][nc]>=heights[r][c] and (nr,nc) not in temp:
-                    temp.add((nr,nc))
-                    dfs(nr,nc,temp)
-            
+        p=deque()
+        a=deque()
+        
         for r in range(rows):
             for c in range(cols):
                 if r==0 or c==0:
-                    pacific.add((r,c))
-                    dfs(r,c,pacific)
+                    p.append((r,c))
+        d=[(-1,0),(1,0),(0,-1),(0,1)]
+        while p:
+            r,c=p.popleft()
+            pacific.add((r,c))
+            for x,y in d:
+                nr=r+x
+                nc=c+y
+                if 0<=nr<rows and 0<=nc<cols:
+                    if heights[r][c]<=heights[nr][nc] and (nr,nc) not in pacific:
+                        p.append((nr,nc))
+        
 
         for r in range(rows):
             for c in range(cols):
                 if r==rows-1 or c==cols-1:
-                    atlantic.add((r,c))
-                    dfs(r,c,atlantic)
-
-        res=atlantic & pacific
-        return list(res)
-
-                
-                
-            
+                    a.append((r,c))
+        d=[(-1,0),(1,0),(0,-1),(0,1)]
+        while a:
+            r,c=a.popleft()
+            atlantic.add((r,c))
+            for x,y in d:
+                nr=r+x
+                nc=c+y
+                if 0<=nr<rows and 0<=nc<cols:
+                    if heights[r][c]<=heights[nr][nc] and (nr,nc) not in atlantic:
+                        a.append((nr,nc))
+        res=(pacific & atlantic)
+        return [list(x) for x in res]
+                    
 
         

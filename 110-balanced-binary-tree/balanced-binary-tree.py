@@ -5,18 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        
+    def isBalanced(self, root: TreeNode | None) -> bool:
+        self.ans=True
         def dfs(node):
             if not node:
                 return 0
             left=dfs(node.left)
-            if left==-1:     #My left subtree is already unbalanced so no need to calculate furthur
-                return -1  
             right=dfs(node.right)
-            if right==-1:
-                return -1
-            if abs(right-left)>1:
-                return -1
+            if abs(left-right)>1:
+                self.ans=False
             return 1+max(left,right)
-        return dfs(root)!=-1
+        dfs(root)
+        return self.ans
+
+        

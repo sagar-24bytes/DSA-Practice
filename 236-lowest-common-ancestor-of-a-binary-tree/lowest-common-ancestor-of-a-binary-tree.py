@@ -16,4 +16,3 @@ class Solution:
                 return node
             return left if left else right
         return func(root)
-        

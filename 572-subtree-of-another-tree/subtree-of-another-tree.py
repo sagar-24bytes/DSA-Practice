@@ -5,22 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        def sameTree(a,b):
-            if not a and not b:
+    def isSubtree(self, root: TreeNode | None, subRoot: TreeNode | None) -> bool:
+        def sametree(p,q):
+            if not p and not q:
                 return True
-            if not a or not b:
+            if not p or not q:
                 return False
-            if a.val!=b.val:
+            if p.val!=q.val:
                 return False
-            return sameTree(a.left,b.left) and sameTree(a.right,b.right)
-        def func(p,q):
-            if not p:
-                return False
-            if p.val==q.val:
-                if sameTree(p,q):
-                    return True
-            return func(p.left,q) or func(p.right,q)
-        return func(root,subRoot)
-
+            return sametree(p.left,q.left) and sametree(p.right,q.right)
         
+        def subtree(a,b):
+            if not a:
+                return False
+            if a.val==b.val:
+                if sametree(a,b):
+                    return True
+            return subtree(a.left,b) or subtree(a.right,b)
+        return subtree(root,subRoot)

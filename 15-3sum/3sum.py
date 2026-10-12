@@ -15,10 +15,10 @@ class Solution(object):
             right=len(nums)-1
             while left<right:
                 t=nums[i]+nums[left]+nums[right]
-                if t<0:
-                    left+=1
-                elif t>0:
+                if t>0:
                     right-=1
+                elif t<0:
+                    left+=1
                 else:
                     res.append([nums[i],nums[left],nums[right]])
                     left+=1
@@ -29,4 +29,4 @@ class Solution(object):
                         right-=1
         return res
 
-
+        

@@ -1,20 +1,23 @@
-class Solution:
-    def generateParenthesis(self, n: int) -> list[str]:
-        ans=[]
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
         path=[]
-        def func(open_b,close_b):
+        ans=[]
+        def func(open,close):
             if len(path)==2*n:
                 ans.append("".join(path[:]))
                 return
-            if open_b<n:
+            if open<n:
                 path.append('(')
-                func(open_b+1,close_b)
+                func(open+1,close)
                 path.pop()
-            if close_b<open_b:
-                path.append(')')
-                func(open_b,close_b+1)
+            if close<open:
+                path.append(")")
+                func(open,close+1)
                 path.pop()
         func(0,0)
         return ans
-
         

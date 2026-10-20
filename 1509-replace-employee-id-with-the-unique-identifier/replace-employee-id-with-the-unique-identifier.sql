@@ -1,4 +1,4 @@
-SELECT E2.unique_id,E1.name
-FROM Employees E1
-LEFT JOIN EmployeeUNI E2
-ON E1.id=E2.id;
+SELECT t2.unique_id AS unique_id,t1.name AS name
+FROM Employees AS t1
+LEFT JOIN EmployeeUNI As t2
+on t1.id=t2.id;

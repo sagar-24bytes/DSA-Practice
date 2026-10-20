@@ -4,7 +4,15 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        if n<=1:
-            return n
-        return self.fib(n-1)+self.fib(n-2)
+        dp=[-1]*(n+1)
+        def func(n):
+            if n<=1:
+                return n
+            if dp[n]!=-1:
+                return dp[n]
+            dp[n]=func(n-1)+func(n-2)
+            return dp[n]
+        return func(n)
+
+
         

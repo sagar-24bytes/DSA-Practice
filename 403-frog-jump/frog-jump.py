@@ -1,22 +1,24 @@
 class Solution:
     def canCross(self, stones: list[int]) -> bool:
+        n=len(stones)
         target=stones[-1]
         if stones[1]!=1:
             return False
+
         stone_set=set(stones)
         seen=set()
-
-        def func(pos,k):
-            if pos==target:
+        def func(idx,step):
+            if idx==target:
                 return True
-            if (pos,k) in seen:
+            if (idx,step) in seen:
                 return False
-            seen.add((pos,k))
-            for x in (k-1,k,k+1):
-                nxxt=pos+x
-                if x>0 and nxxt in stone_set:
-                    if func(nxxt,x):
+            seen.add((idx,step))
+            for curr in (step-1,step,step+1):
+                nxxt=curr+idx
+                if curr>0 and nxxt in stone_set:
+                    if func(nxxt,curr):
                         return True
             return False
         return func(1,1)
+
         

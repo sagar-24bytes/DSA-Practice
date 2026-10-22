@@ -3,15 +3,12 @@ class Solution:
         n=len(cost)
         cost.append(0)
         dp=[-1]*(n+1)
-        def func(idx):
-            if idx<0:
-                return 0
-            if dp[idx]!=-1:
-                return dp[idx]
-            first=func(idx-1)+cost[idx]
-
-            sec=func(idx-2)+cost[idx]
-            dp[idx]=min(first,sec)
-            return dp[idx]
-        return func(n)
+        dp[0]=cost[0]
+        dp[1]=cost[1]
+        for i in range(2,n+1):
+            first=cost[i]+dp[i-1]
+            sec=cost[i]+dp[i-2]
+            dp[i]=min(first,sec)
+        return dp[n]
+        
 

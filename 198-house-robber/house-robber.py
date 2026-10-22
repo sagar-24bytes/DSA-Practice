@@ -1,9 +1,14 @@
+from functools import lru_cache
 class Solution:
     def rob(self, nums: list[int]) -> int:
-        first=sec=0
-        for n in nums:
-            curr=max(sec,first+n)
-            first=sec
-            sec=curr
-        return sec
+        n=len(nums)
+        @lru_cache(None)
+        def func(idx):
+            if idx<0:
+                return 0
+            take=func(idx-2)+nums[idx]
+            not_take=func(idx-1)
+            return max(take,not_take)
+        return func(n-1)
+
         

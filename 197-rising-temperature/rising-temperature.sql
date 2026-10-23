@@ -1,4 +1,4 @@
-SELECT w1.id
-FROM Weather as w1
-CROSS JOIN Weather as w2
-WHERE DATEDIFF(w1.recordDate,w2.recordDate)=1 and w1.temperature>w2.temperature;
+SELECT t1.id
+FROM Weather as t1
+JOIN Weather as t2
+ON DATEDIFF(t1.recordDate,t2.recordDate)=1 and t1.temperature>t2.temperature;

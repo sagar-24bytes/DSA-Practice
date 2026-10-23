@@ -1,14 +1,21 @@
-from functools import lru_cache
 class Solution:
     def rob(self, nums: list[int]) -> int:
+        # recursion solution + Memoization
         n=len(nums)
-        @lru_cache(None)
+        dp=[-1]*(n)
+
         def func(idx):
+            if idx==0:
+                return nums[0]
             if idx<0:
                 return 0
-            take=func(idx-2)+nums[idx]
+            if dp[idx]!=-1:
+                return dp[idx]
+            take=nums[idx]+func(idx-2)
             not_take=func(idx-1)
-            return max(take,not_take)
+            dp[idx]=max(take,not_take)
+            return dp[idx]
         return func(n-1)
-
+        
+     
         

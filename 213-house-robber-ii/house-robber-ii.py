@@ -3,19 +3,24 @@ class Solution:
         n=len(nums)
         if n<=1:
             return nums[0]
-        def func(idx,base,dp):
-            if idx==base:
-                return nums[base]
-            if idx<base:
-                return 0
-            if dp[idx]!=-1:
-                return dp[idx]
-            take=nums[idx]+func(idx-2,base,dp)
-            not_take=func(idx-1,base,dp)
-            dp[idx]=max(take,not_take)
-            return dp[idx]
         dp=[-1]*n
         fp=[-1]*n
-        return max(func(n-1,1,dp),func(n-2,0,fp))
+        dp[0]=nums[0]
+        fp[1]=nums[1]
+        fp[0]=0
+        for i in range(1,n-1):
+            take=nums[i]
+            if i>1:
+                take+=dp[i-2]
+            not_take=dp[i-1]
+            dp[i]=max(take,not_take)
+        for i in range(2,n):
+            take=nums[i]
+            if i>1:
+                take+=fp[i-2]
+            not_take=fp[i-1]
+            fp[i]=max(take,not_take)
+        return max(max(dp),max(fp))
+
 
         

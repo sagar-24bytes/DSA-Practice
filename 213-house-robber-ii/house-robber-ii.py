@@ -20,7 +20,7 @@ class Solution:
                 take+=fp[i-2]
             not_take=fp[i-1]
             fp[i]=max(take,not_take)
-        return max(max(dp),max(fp))
+        return max(dp[n-2],fp[n-1])
 
 
         

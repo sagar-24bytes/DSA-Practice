@@ -1,10 +1,19 @@
 class Solution:
     def coinChange(self, coins: list[int], amount: int) -> int:
-        dp=[float('inf')]*(amount+1)
-        dp[0]=0
-        for a in range(amount+1):
+        dp=[-1]*(amount+1)
+
+        def func(amt):
+            if amt==0:
+                return 0
+            if amt<0:
+                return float('inf')
+            if dp[amt]!=-1:
+                return dp[amt]
+            val=float('inf')
             for coin in coins:
-                if coin<=a:
-                    dp[a]=min(dp[a],1+dp[a-coin])
-        return dp[amount] if dp[amount]!=float('inf') else -1
+                val=min(val,1+func(amt-coin))
+            dp[amt]=val
+            return dp[amt]
+        ans=func(amount)
+        return ans if ans!=float('inf') else -1
         

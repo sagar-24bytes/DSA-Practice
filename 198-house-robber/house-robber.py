@@ -1,20 +1,18 @@
 class Solution:
     def rob(self, nums: list[int]) -> int:
-        # tabulation method (space optimized)
         n=len(nums)
-        prev2=0
-        prev=nums[0]
-
-
-        for i in range(1,n):
-            take=nums[i]
-            if i>1:
-                take+=prev2
-            not_take=prev
-            curr=max(take,not_take)
-            prev2,prev=prev,curr
-        return prev
-
-        
-     
+        dp=[-1]*n
+        def func(idx):
+            # if idx==0:
+            #     return nums[0]
+            if idx<0:
+                return 0
+            if dp[idx]!=-1:
+                return dp[idx]
+            
+            take=nums[idx]+func(idx-2)
+            not_take=func(idx-1)
+            dp[idx]=max(take,not_take)
+            return dp[idx]
+        return func(n-1)
         

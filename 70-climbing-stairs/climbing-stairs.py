@@ -1,16 +1,10 @@
-from functools import lru_cache
 class Solution:
     def climbStairs(self, n: int) -> int:
-        @lru_cache(None)
-        def func(steps):
-            if steps<0:
-                return 0
-            if steps==0 or steps==1:
-                return 1
-            val=0
-            for i in range(1,3):
-                val+=func(steps-i)
-            return val
-        return func(n)
+        dp=[0]*(n+1)
+        dp[0]=dp[1]=1
+        for step in range(2,n+1):
+            for x in range(1,3):
+                dp[step]+=dp[step-x]
+        return dp[n]
 
         

@@ -1,15 +1,16 @@
+from functools import lru_cache
 class Solution:
     def minCostClimbingStairs(self, cost: list[int]) -> int:
+        @lru_cache(None)
+        def func(step,base):
+            if step==base:
+                return cost[base]
+            if step<base:
+                return float('inf')
+            val=float('inf')
+            
+            return cost[step]+min(func(step-1,base),func(step-2,base))
         n=len(cost)
         cost.append(0)
-        # dp=[-1]*(n+1)
-        prev2=cost[0]
-        prev=cost[1]
-        for i in range(2,n+1):
-            first=cost[i]+prev
-            sec=cost[i]+prev2
-            curr=min(first,sec)
-            prev2,prev=prev,curr
-        return prev
+        return min(func(n,0) , func(n,1))
         
-

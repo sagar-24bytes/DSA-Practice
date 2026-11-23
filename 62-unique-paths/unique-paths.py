@@ -1,12 +1,12 @@
-from functools import lru_cache
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        @lru_cache(None)
-        def func(r,c):
-            if r==m-1 and c==n-1:
-                return 1
-            if r>=m or c>=n:
-                return 0
-            return func(r,c+1)+func(r+1,c)
-        return func(0,0)
-        
+        dp=[[0]*n for _ in range(m)]
+        dp[m-1][n-1]=1
+        for r in range(m-1,-1,-1):
+            for c in range(n-1,-1,-1):
+                if r==m-1 and c==n-1:
+                    continue
+                down=dp[r+1][c] if r+1<m else 0
+                right=dp[r][c+1] if c+1<n else 0
+                dp[r][c]=down+right
+        return dp[0][0]

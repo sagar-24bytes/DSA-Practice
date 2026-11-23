@@ -3,9 +3,10 @@ class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         @lru_cache(None)
         def func(r,c):
-            if r==0 and c==0:
+            if r==m-1 and c==n-1:
                 return 1
-            if r<0 or c<0:
+            if r>=m or c>=n:
                 return 0
-            return func(r-1,c)+func(r,c-1)
-        return func(m-1,n-1)
+            return func(r,c+1)+func(r+1,c)
+        return func(0,0)
+        
